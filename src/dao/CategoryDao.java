@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Category;
 import java.sql.*;
+
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class CategoryDao {
     public static void save(Category category){

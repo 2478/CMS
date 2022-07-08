@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class Bill {
     private int id;
@@ -72,5 +72,6 @@ public class Bill {
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
+    
     
 }

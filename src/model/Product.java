@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class Product {
     public int id;
@@ -45,5 +45,7 @@ public class Product {
     public void setPrice(String price) {
         this.price = price;
     }
+    
+    
     
 }

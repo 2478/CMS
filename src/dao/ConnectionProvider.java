@@ -4,16 +4,15 @@
  */
 package dao;
 import java.sql.*;
-
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class ConnectionProvider {
     public static Connection getCon(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cms?useSSL=false", "root", "it55");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cms?useSSL=false", "root", "Minarva@45");
             return con;
         }
         catch(Exception e){

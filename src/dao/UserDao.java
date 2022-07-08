@@ -8,14 +8,13 @@ import javax.swing.JOptionPane;
 import model.User;
 import java.sql.*;
 import java.util.ArrayList;
-
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class UserDao {
-
     public static void save(User user) {
+        
         String query = "insert into user(name, email, mobileNumber, address, password, securityQuestion, answer, status) values('" + user.getName() + "','" + user.getEmail() + "','" + user.getMobileNumber() + "','" + user.getAddress() + "','" + user.getPassword() + "','" + user.getSecurityQuestion() + "','" + user.getAnswer() + "','false')";
         DbOperations.setDataOrDelete(query, "Registered Successfully! Wait for Admin approval!");
     }

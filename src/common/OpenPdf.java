@@ -3,13 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package common;
-
 import java.io.File;
 import javax.swing.JOptionPane;
-
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class OpenPdf {
     public static void openById(String id){
@@ -26,5 +24,5 @@ public class OpenPdf {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
 }
- 

@@ -6,10 +6,9 @@ package model;
 
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class User {
-
     private int id;
     private String name;
     private String email;
@@ -91,5 +90,4 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }

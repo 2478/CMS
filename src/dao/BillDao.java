@@ -3,18 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
-
 import java.sql.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Bill;
-
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class BillDao {
-
     public static String getId() {
         int id = 1;
         try {

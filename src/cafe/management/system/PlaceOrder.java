@@ -25,10 +25,9 @@ import javax.swing.table.TableModel;
 import model.Bill;
 import model.Category;
 import model.Product;
-
 /**
  *
- * @author DEBANGSH
+ * @author Personal
  */
 public class PlaceOrder extends javax.swing.JFrame {
 
@@ -54,7 +53,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         btnAddToCart.setEnabled(false);
         btnGenerateBillPrint.setEnabled(false);
         JFormattedTextField tf = ((JSpinner.DefaultEditor) jSpinner1.getEditor()).getTextField();
-        tf.setEnabled(false);
+        tf.setEditable(false);
         userEmail = email;
     }
 
@@ -68,7 +67,7 @@ public class PlaceOrder extends javax.swing.JFrame {
             dtm.addRow(new Object[]{productObj.getName()});
         }
     }
-
+    
     public void filterProductByname(String name, String category) {
         DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         dtm.setRowCount(0);
@@ -91,14 +90,13 @@ public class PlaceOrder extends javax.swing.JFrame {
     public void validateField() {
         String customerName = txtCusName.getText();
         String customerMobileNumber = txtCusMobileNo.getText();
-        String customerEmail = jTextField3.getText();
+        String customerEmail = txtCusEmail.getText();
         if (!customerEmail.equals("") && customerMobileNumber.matches(mobileNumberPattern) && customerMobileNumber.length() == 10 && customerEmail.matches(emailPattern) && grandTotal > 0) {
             btnGenerateBillPrint.setEnabled(true);
         } else {
             btnGenerateBillPrint.setEnabled(false);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,11 +112,11 @@ public class PlaceOrder extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtCusName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtCusMobileNo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtCusName = new javax.swing.JTextField();
+        txtCusMobileNo = new javax.swing.JTextField();
+        txtCusEmail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -126,13 +124,13 @@ public class PlaceOrder extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        txtProName = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtProPrice = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        txtProName = new javax.swing.JTextField();
         jSpinner1 = new javax.swing.JSpinner();
-        jLabel13 = new javax.swing.JLabel();
+        txtProPrice = new javax.swing.JTextField();
         txtProTotal = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
         btnAddToCart = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -140,7 +138,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         lblGrandTotal = new javax.swing.JLabel();
         btnGenerateBillPrint = new javax.swing.JButton();
-        txtCusEmail = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -152,10 +150,10 @@ public class PlaceOrder extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/place order.png"))); // NOI18N
         jLabel1.setText("Place Order");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 14, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -163,27 +161,37 @@ public class PlaceOrder extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1316, 10, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1321, 15, 35, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel2.setText("Bill ID");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 91, -1, -1));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Bill ID:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 111, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("--");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 91, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 111, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Customer Details:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 132, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 153, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel5.setText("Name");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 184, -1, -1));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Name:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 195, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Mobile Number:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 279, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Email:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 357, -1, -1));
 
         txtCusName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCusName.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -191,12 +199,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 txtCusNameKeyReleased(evt);
             }
         });
-        getContentPane().add(txtCusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 204, 250, -1));
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel6.setText("Mobile Number");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 254, -1, -1));
+        getContentPane().add(txtCusName, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 240, 250, -1));
 
         txtCusMobileNo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtCusMobileNo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -204,39 +207,33 @@ public class PlaceOrder extends javax.swing.JFrame {
                 txtCusMobileNoKeyReleased(evt);
             }
         });
-        getContentPane().add(txtCusMobileNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 292, 250, -1));
+        getContentPane().add(txtCusMobileNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 318, 250, -1));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel7.setText("Email");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 336, -1, -1));
-
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCusEmail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtCusEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextField3KeyReleased(evt);
+                txtCusEmailKeyReleased(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 374, 250, -1));
+        getContentPane().add(txtCusEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 395, 250, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Category");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 91, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 111, -1, -1));
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 129, 250, -1));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 149, 250, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Search");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 184, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 195, -1, -1));
 
         txtSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -244,7 +241,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 txtSearchKeyReleased(evt);
             }
         });
-        getContentPane().add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 222, 250, -1));
+        getContentPane().add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 240, 250, -1));
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -262,28 +259,25 @@ public class PlaceOrder extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 254, 250, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 289, 250, 357));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 51, 102));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Name");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 91, -1, -1));
-
-        txtProName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        getContentPane().add(txtProName, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 129, 250, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 111, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel11.setText("Price");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 91, -1, -1));
-
-        txtProPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        getContentPane().add(txtProPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 129, 249, -1));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Quantity");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 195, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel12.setText("Quantity");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 184, -1, -1));
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Price");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1059, 111, -1, -1));
+
+        txtProName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(txtProName, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 150, 250, -1));
 
         jSpinner1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -291,15 +285,18 @@ public class PlaceOrder extends javax.swing.JFrame {
                 jSpinner1StateChanged(evt);
             }
         });
-        getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 222, 250, -1));
+        getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 240, 250, -1));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel13.setText("Total");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 184, -1, -1));
+        txtProPrice.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        getContentPane().add(txtProPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(1059, 150, 250, -1));
 
         txtProTotal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        getContentPane().add(txtProTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 222, 249, -1));
+        getContentPane().add(txtProTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1059, 240, 250, -1));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Total");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1059, 195, -1, -1));
 
         btnClear.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
@@ -309,7 +306,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 btnClearActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 254, -1, -1));
+        getContentPane().add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 289, -1, -1));
 
         btnAddToCart.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAddToCart.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add to cart.png"))); // NOI18N
@@ -319,7 +316,7 @@ public class PlaceOrder extends javax.swing.JFrame {
                 btnAddToCartActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAddToCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(1127, 254, -1, -1));
+        getContentPane().add(btnAddToCart, new org.netbeans.lib.awtextra.AbsoluteConstraints(1174, 289, -1, -1));
 
         jTable2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -337,17 +334,17 @@ public class PlaceOrder extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 298, 541, 383));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 336, 547, 310));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 51, 102));
-        jLabel14.setText("Grand Total Rs.");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(718, 702, -1, -1));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Grand Total RS:");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(762, 672, -1, -1));
 
         lblGrandTotal.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblGrandTotal.setForeground(new java.awt.Color(0, 51, 102));
+        lblGrandTotal.setForeground(new java.awt.Color(255, 255, 255));
         lblGrandTotal.setText("000");
-        getContentPane().add(lblGrandTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 702, -1, -1));
+        getContentPane().add(lblGrandTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(878, 672, -1, -1));
 
         btnGenerateBillPrint.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGenerateBillPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/generate bill & print.png"))); // NOI18N
@@ -357,11 +354,11 @@ public class PlaceOrder extends javax.swing.JFrame {
                 btnGenerateBillPrintActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGenerateBillPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1067, 699, -1, -1));
+        getContentPane().add(btnGenerateBillPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(1114, 668, -1, -1));
 
-        txtCusEmail.setForeground(new java.awt.Color(0, 51, 102));
-        txtCusEmail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Big Home Page.jpg"))); // NOI18N
-        getContentPane().add(txtCusEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/full-page-background.PNG"))); // NOI18N
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -408,17 +405,6 @@ public class PlaceOrder extends javax.swing.JFrame {
         btnAddToCart.setEnabled(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        // TODO add your handling code here:
-        int quantity = (Integer) jSpinner1.getValue();
-        if (quantity <= 1) {
-            jSpinner1.setValue(1);
-            quantity = 1;
-        }
-        productTotal = productPrice * quantity;
-        txtProTotal.setText(String.valueOf(productTotal));
-    }//GEN-LAST:event_jSpinner1StateChanged
-
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         String category = (String) jComboBox1.getSelectedItem();
@@ -454,16 +440,27 @@ public class PlaceOrder extends javax.swing.JFrame {
         validateField();
     }//GEN-LAST:event_txtCusMobileNoKeyReleased
 
-    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+    private void txtCusEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCusEmailKeyReleased
         // TODO add your handling code here:
         validateField();
-    }//GEN-LAST:event_jTextField3KeyReleased
+    }//GEN-LAST:event_txtCusEmailKeyReleased
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        // TODO add your handling code here:
+        int quantity = (Integer) jSpinner1.getValue();
+        if (quantity <= 1) {
+            jSpinner1.setValue(1);
+            quantity = 1;
+        }
+        productTotal = productPrice * quantity;
+        txtProTotal.setText(String.valueOf(productTotal));
+    }//GEN-LAST:event_jSpinner1StateChanged
 
     private void btnGenerateBillPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateBillPrintActionPerformed
         // TODO add your handling code here:
         String customerName = txtCusName.getText();
         String customerMobileNumber = txtCusMobileNo.getText();
-        String customerEmail = jTextField3.getText();
+        String customerEmail = txtCusEmail.getText();
         SimpleDateFormat dFormat = new SimpleDateFormat("dd-MM-yyyy");
         Date date = new Date();
         String todaydate = dFormat.format(date);
@@ -484,11 +481,11 @@ public class PlaceOrder extends javax.swing.JFrame {
         try {
             PdfWriter.getInstance(doc, new FileOutputStream(path + "" + billId + ".pdf"));
             doc.open();
-            Paragraph cafeName = new Paragraph("                                                                                   Cafe Management System\n");
+            Paragraph cafeName = new Paragraph("                                                      Cafe Management System\n");
             doc.add(cafeName);
-            Paragraph starLine = new Paragraph("************************************************************************************************************************************");
+            Paragraph starLine = new Paragraph("****************************************************************************************************************");
             doc.add(starLine);
-            Paragraph paragraph3 = new Paragraph("\tBill ID:" + billId + "\nCustomer Name:" + customerName + "Total Paid: " + grandTotal);
+            Paragraph paragraph3 = new Paragraph("\tBill ID:" + billId + "\nCustomer Name:" + customerName + "\nTotal Paid: " + grandTotal);
             doc.add(paragraph3);
             doc.add(starLine);
             PdfPTable tb1 = new PdfPTable(4);
@@ -532,6 +529,7 @@ public class PlaceOrder extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable2MouseClicked
 
+    
     /**
      * @param args the command line arguments
      */
@@ -579,6 +577,7 @@ public class PlaceOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -592,9 +591,8 @@ public class PlaceOrder extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblGrandTotal;
-    private javax.swing.JLabel txtCusEmail;
+    private javax.swing.JTextField txtCusEmail;
     private javax.swing.JTextField txtCusMobileNo;
     private javax.swing.JTextField txtCusName;
     private javax.swing.JTextField txtProName;
